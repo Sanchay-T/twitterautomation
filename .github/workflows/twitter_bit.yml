@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        verbose: true
 
     - name: Check internet connection
       run: |
@@ -25,8 +23,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
-      run: |
-        echo "Python setup complete."
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -35,8 +31,6 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-      run: |
-        echo "Cache setup complete."
 
     - name: Install dependencies
       run: |
