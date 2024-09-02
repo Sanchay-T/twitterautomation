@@ -38,7 +38,7 @@ jobs:
         python -m venv twitterenv
         echo "Virtual environment created."
         echo "Activating virtual environment..."
-        source twitterenv/bin/activate
+        . twitterenv/bin/activate
         echo "Virtual environment activated."
         echo "Installing dependencies..."
         pip install -r requirements.txt -v
@@ -56,8 +56,8 @@ jobs:
         NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       run: |
         echo "Activating virtual environment..."
-        source twitterenv/bin/activate
+        . twitterenv/bin/activate
         echo "Virtual environment activated."
         echo "Running Twitter Bot..."
-        python3 main.py -v
+        python main.py -v
         echo "Twitter Bot run complete."
