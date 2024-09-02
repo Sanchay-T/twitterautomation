@@ -12,17 +12,43 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        verbose: true
+
+    - name: Check internet connection
+      run: |
+        echo "Checking internet connection..."
+        ping -c 4 google.com
+        echo "Internet connection check complete."
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
+      run: |
+        echo "Python setup complete."
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+      run: |
+        echo "Cache setup complete."
 
     - name: Install dependencies
       run: |
+        echo "Creating virtual environment..."
         python -m venv twitterenv
+        echo "Virtual environment created."
+        echo "Activating virtual environment..."
         source twitterenv/bin/activate
-        pip install -r requirements.txt
+        echo "Virtual environment activated."
+        echo "Installing dependencies..."
+        pip install -r requirements.txt -v
+        echo "Dependencies installed."
 
     - name: Run Twitter Bot
       env:
@@ -34,7 +60,10 @@ jobs:
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
-
       run: |
+        echo "Activating virtual environment..."
         source twitterenv/bin/activate
-        python main.py
+        echo "Virtual environment activated."
+        echo "Running Twitter Bot..."
+        python3 main.py -v
+        echo "Twitter Bot run complete."
