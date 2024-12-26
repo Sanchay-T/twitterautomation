@@ -1968,3 +1968,131 @@ adversarial ml reveals that even the most accurate ai models can be deceived by 
     }
 }
 2024-09-02 17:50:10 - Waiting for 15.42 minutes before next check
+2024-12-25 21:32:33 - Twitter bot started
+2024-12-25 21:32:34 - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 402 Payment Required"
+2024-12-25 21:32:34 - An error occurred during the tweet process
+Traceback (most recent call last):
+  File "/Users/sanchaythalnerkar/twitterautomation/main.py", line 24, in tweet_loop
+    tweet_content = generate_tweet_content()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/twitter_utils.py", line 263, in generate_tweet_content
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/env/lib/python3.11/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/env/lib/python3.11/site-packages/openai/resources/chat/completions.py", line 859, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/env/lib/python3.11/site-packages/openai/_base_client.py", line 1280, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/env/lib/python3.11/site-packages/openai/_base_client.py", line 957, in request
+    return self._request(
+           ^^^^^^^^^^^^^^
+  File "/Users/sanchaythalnerkar/twitterautomation/env/lib/python3.11/site-packages/openai/_base_client.py", line 1061, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.APIStatusError: Error code: 402 - {'status': 402, 'title': 'Payment Required', 'detail': "Account 'nLPle9Ytq63U3V2XGkAUrvvK1pRiop7QYI3tbhjAalA': Cloud credits expired - Please contact NVIDIA representatives"}
+2024-12-25 21:32:34 - Waiting for 14.02 minutes before next check
+2024-12-25 21:32:46 - Twitter bot stopped
+2024-12-25 23:26:15 -  * Debugger is active!
+2024-12-25 23:26:15 -  * Debugger PIN: 626-061-533
+2024-12-25 23:26:43 -  * Detected change in '/Users/sanchaythalnerkar/twitterautomation/twitter_utils.py', reloading
+2024-12-25 23:26:46 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-25 23:26:46 - [33mPress CTRL+C to quit[0m
+2024-12-25 23:26:46 -  * Restarting with stat
+2024-12-25 23:26:47 -  * Debugger is active!
+2024-12-25 23:26:47 -  * Debugger PIN: 626-061-533
+2024-12-25 23:27:05 - 127.0.0.1 - - [25/Dec/2024 23:27:05] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:08 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:27:08 - 127.0.0.1 - - [25/Dec/2024 23:27:08] "[32mGET /toggle/1 HTTP/1.1[0m" 302 -
+2024-12-25 23:27:08 - 127.0.0.1 - - [25/Dec/2024 23:27:08] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:21 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:27:21 - 127.0.0.1 - - [25/Dec/2024 23:27:21] "[32mGET /toggle/2 HTTP/1.1[0m" 302 -
+2024-12-25 23:27:21 - 127.0.0.1 - - [25/Dec/2024 23:27:21] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:31 - 127.0.0.1 - - [25/Dec/2024 23:27:31] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:33 - 127.0.0.1 - - [25/Dec/2024 23:27:33] "[32mGET /toggle/0 HTTP/1.1[0m" 302 -
+2024-12-25 23:27:33 - 127.0.0.1 - - [25/Dec/2024 23:27:33] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:37 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:27:37 - 127.0.0.1 - - [25/Dec/2024 23:27:37] "[32mGET /toggle/0 HTTP/1.1[0m" 302 -
+2024-12-25 23:27:37 - 127.0.0.1 - - [25/Dec/2024 23:27:37] "GET / HTTP/1.1" 200 -
+2024-12-25 23:27:38 - 127.0.0.1 - - [25/Dec/2024 23:27:38] "[32mPOST /add HTTP/1.1[0m" 302 -
+2024-12-25 23:27:38 - 127.0.0.1 - - [25/Dec/2024 23:27:38] "GET / HTTP/1.1" 200 -
+2024-12-25 23:28:25 -  * Detected change in '/Users/sanchaythalnerkar/twitterautomation/server.py', reloading
+2024-12-25 23:28:26 -  * Restarting with stat
+2024-12-25 23:28:59 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-25 23:28:59 - [33mPress CTRL+C to quit[0m
+2024-12-25 23:28:59 -  * Restarting with stat
+2024-12-25 23:28:59 -  * Debugger is active!
+2024-12-25 23:28:59 -  * Debugger PIN: 626-061-533
+2024-12-25 23:29:02 - 127.0.0.1 - - [25/Dec/2024 23:29:02] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:02 - 127.0.0.1 - - [25/Dec/2024 23:29:02] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:03 - 127.0.0.1 - - [25/Dec/2024 23:29:03] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:03 - 127.0.0.1 - - [25/Dec/2024 23:29:03] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:03 - 127.0.0.1 - - [25/Dec/2024 23:29:03] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:06 - 127.0.0.1 - - [25/Dec/2024 23:29:06] "[32mPOST /add HTTP/1.1[0m" 302 -
+2024-12-25 23:29:06 - 127.0.0.1 - - [25/Dec/2024 23:29:06] "GET / HTTP/1.1" 200 -
+2024-12-25 23:29:15 - Debug: Checking creds: consumer_key=True, consumer_secret=True, access_token=True, access_token_secret=True
+2024-12-25 23:29:16 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:29:16 - Debug: tweet_message response: Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:29:16 - 127.0.0.1 - - [25/Dec/2024 23:29:16] "[32mGET /toggle/3 HTTP/1.1[0m" 302 -
+2024-12-25 23:29:16 - 127.0.0.1 - - [25/Dec/2024 23:29:16] "GET / HTTP/1.1" 200 -
+2024-12-25 23:30:28 -  * Detected change in '/Users/sanchaythalnerkar/twitterautomation/test_tweet.py', reloading
+2024-12-25 23:30:28 -  * Restarting with stat
+2024-12-25 23:30:29 -  * Debugger is active!
+2024-12-25 23:30:29 -  * Debugger PIN: 626-061-533
+2024-12-25 23:30:52 - Debug: Checking creds: consumer_key=True, consumer_secret=True, access_token=True, access_token_secret=True
+2024-12-25 23:30:53 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:33:10 - Debug: Checking creds: consumer_key=True, consumer_secret=True, access_token=True, access_token_secret=True
+2024-12-25 23:33:11 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:38:12 - Debug: Checking creds: consumer_key=True, consumer_secret=True, access_token=True, access_token_secret=True
+2024-12-25 23:38:13 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+2024-12-25 23:39:47 - Debug: Checking creds: consumer_key=True, consumer_secret=True, access_token=True, access_token_secret=True
+2024-12-25 23:39:48 - Error: Request returned an error: 401 {
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
