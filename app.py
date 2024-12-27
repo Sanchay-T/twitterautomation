@@ -484,29 +484,39 @@ def update_schedule():
 
         if not tweet_id or not new_scheduled_time_str:
             logging.error("Invalid data received for update_schedule.")
-            return jsonify({"status": "error", "message": "Invalid data provided."}), 400
+            return (
+                jsonify({"status": "error", "message": "Invalid data provided."}),
+                400,
+            )
 
         # Try multiple datetime formats
         formats_to_try = [
             "%Y-%m-%dT%H:%M",  # Standard ISO format
-            "%Y-%m-%d %H:%M",   # Space-separated format
-            "%Y-%m-%d %H:%M:%S" # With seconds
+            "%Y-%m-%d %H:%M",  # Space-separated format
+            "%Y-%m-%d %H:%M:%S",  # With seconds
         ]
 
         new_scheduled_time = None
         for date_format in formats_to_try:
             try:
-                new_scheduled_time = datetime.strptime(new_scheduled_time_str, date_format)
+                new_scheduled_time = datetime.strptime(
+                    new_scheduled_time_str, date_format
+                )
                 break
             except ValueError:
                 continue
 
         if new_scheduled_time is None:
             logging.error(f"Could not parse date: {new_scheduled_time_str}")
-            return jsonify({
-                "status": "error", 
-                "message": "Invalid date format. Expected format: YYYY-MM-DD HH:MM"
-            }), 400
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": "Invalid date format. Expected format: YYYY-MM-DD HH:MM",
+                    }
+                ),
+                400,
+            )
 
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -520,23 +530,30 @@ def update_schedule():
 
         if row["status"] != "approved":
             conn.close()
-            return jsonify({
-                "status": "error",
-                "message": "Only approved tweets can be rescheduled."
-            }), 400
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": "Only approved tweets can be rescheduled.",
+                    }
+                ),
+                400,
+            )
 
         cursor.execute(
             "UPDATE tweets SET scheduled_time = ? WHERE id = ?",
-            (new_scheduled_time.strftime("%Y-%m-%d %H:%M:%S"), tweet_id)
+            (new_scheduled_time.strftime("%Y-%m-%d %H:%M:%S"), tweet_id),
         )
         conn.commit()
         conn.close()
 
         logging.debug(f"Tweet {tweet_id} rescheduled to {new_scheduled_time}.")
-        return jsonify({
-            "status": "success",
-            "scheduled_time": new_scheduled_time.strftime("%Y-%m-%d %H:%M:%S")
-        })
+        return jsonify(
+            {
+                "status": "success",
+                "scheduled_time": new_scheduled_time.strftime("%Y-%m-%d %H:%M:%S"),
+            }
+        )
 
     except Exception as e:
         logging.error("Error in update_schedule", exc_info=e)
@@ -545,16 +562,11 @@ def update_schedule():
 
 if __name__ == "__main__":
     init_db()
-
-    # Restore scheduled tweets before starting scheduler
     restore_scheduled_tweets()
 
     scheduler = BackgroundScheduler()
-
-    random_interval = random.randint(720, 1200)  # 12-20 minutes
-    logging.info(
-        f"Setting scheduler interval to {random_interval} seconds (approximately {random_interval/60:.1f} minutes)"
-    )
+    random_interval = random.randint(720, 1200)
+    logging.info(f"Setting scheduler interval to {random_interval} seconds")
 
     scheduler.add_job(
         post_scheduled_tweets, "interval", seconds=random_interval, jitter=120
@@ -564,6 +576,9 @@ if __name__ == "__main__":
     # Register the cleanup handler
     atexit.register(lambda: scheduler.shutdown() if scheduler.running else None)
 
-    # Get port from environment variable with fallback to 8080
-    port = int(os.getenv("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    # Let Digital Ocean set the port
+    port = int(os.getenv("PORT", "8080"))
+    if os.getenv("FLASK_ENV") == "development":
+        app.run(host="0.0.0.0", port=port, debug=True)
+    else:
+        app.run(host="0.0.0.0", port=port)
