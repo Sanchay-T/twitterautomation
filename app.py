@@ -576,9 +576,6 @@ if __name__ == "__main__":
     # Register the cleanup handler
     atexit.register(lambda: scheduler.shutdown() if scheduler.running else None)
 
-    # Let Digital Ocean set the port
-    port = int(os.getenv("PORT", "8080"))
-    if os.getenv("FLASK_ENV") == "development":
-        app.run(host="0.0.0.0", port=port, debug=True)
-    else:
-        app.run(host="0.0.0.0", port=port)
+    # Let Digital Ocean set the port without a default
+    port = int(os.getenv("PORT"))
+    app.run(host="0.0.0.0", port=port)
